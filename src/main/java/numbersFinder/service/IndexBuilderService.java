@@ -13,10 +13,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;;
+import java.time.ZoneId;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * class IndexBuilderService with one public properties <b>indexFilesInDir</b>.
+ * Class for index new files or reindexing existing files
+ */
 @Slf4j
 public class IndexBuilderService {
 

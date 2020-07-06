@@ -16,11 +16,19 @@ public class Controller {
     @Autowired
     IndexBuilderService indexingFilesService;
 
+    /**
+     * method search number from files
+     * @param number - number, which must be found in the files
+     * @return object Result
+     */
     @GetMapping("{n}")
     public Result getOne(@PathVariable("n") Integer number) {
         return numberFinderService.searchForNumber(number);
     }
 
+    /**
+     * method for index new files or reindexing existing files
+     */
     @PostMapping("/reindex")
     public void reindex() {
         try {

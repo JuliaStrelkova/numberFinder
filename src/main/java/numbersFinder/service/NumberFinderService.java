@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import numbersFinder.dto.Result;
 import numbersFinder.entity.NumberSearchingResult;
 import numbersFinder.entity.NumbersInvertedIndex;
-import numbersFinder.exception.NotFoundException;
 import numbersFinder.repo.FindNumberResultRepo;
 import numbersFinder.repo.NumbersInvertedIndexRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * class NumberFinderService with one public properties <b>searchForNumber</b>.
+ * Class for search for number in the repository
+ */
 @Slf4j
 public class NumberFinderService {
     final private String codeNotFound = "01.Result.NotFound";
@@ -26,6 +29,11 @@ public class NumberFinderService {
     @Autowired
     FindNumberResultRepo findNumberResultRepo;
 
+    /**
+     * method for searching numbers in the repository
+     * @param number - received number, which must be found in the repository
+     * @return object Result
+     */
     public Result searchForNumber(Integer number) {
         try {
             Result result = new Result();
@@ -46,7 +54,7 @@ public class NumberFinderService {
             log.debug("Number: {} found in files: {}", number, listFiles);
             updateNumberSearchingResult(number, codeOk, listFiles, null);
             return result;
-        } catch (NotFoundException e) {
+        } catch (Throwable e) {
             Result resultError = new Result();
             resultError.setCode(codeError);
             resultError.setError(ErrorText);
